@@ -1,10 +1,9 @@
-import express from "express";
-import cors from "cors";
-import mysql from "mysql";
-
+var cors = require("cors");
+var mysql = require("mysql");
+const express = require("express");
 const app = express();
 
-app.use(express.json);
+app.use(express.json());
 app.use(cors());
 
 const db = mysql.createConnection({
@@ -14,6 +13,11 @@ const db = mysql.createConnection({
     database: "shop",
 });
 
+app.get("/home", (req, res)=>{
+    res.send("HELLO WORLD FROM BACKEND!");
+})
+
 app.listen(3001, ()=>{
-    console.log("YE")
+    console.log("HELLO WORLD");
+
 });
