@@ -37,6 +37,7 @@ export default function Register() {
             </div>
             <button onClick={submit}>Register</button>
             <p>{message}</p>
+            <Link to="/login">Already have an account</Link>
         </main>
     )
 }

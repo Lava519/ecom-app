@@ -42,6 +42,7 @@ export default function Login() {
             </div>
             <button onClick={submit}>Login</button>
             <p>{message}</p>
+            <Link to="/register">Don't have an account.</Link>
         </main>
     )
 }
