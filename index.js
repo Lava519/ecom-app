@@ -13,8 +13,34 @@ const db = mysql.createConnection({
     database: "shop",
 });
 
-app.get("/home", (req, res)=>{
-    res.send("HELLO WORLD FROM BACKEND!");
+app.post("/login", (req, res)=>{
+    const password = req.body.password;
+    const username = req.body.username;
+    const checkUser = "SELECT * FROM Users WHERE Name=?;"
+    const login = "SELECT * FROM Users WHERE Name=? AND Password=?;"
+    let exist = false;
+    db.query(checkUser, [username], (error, data) =>{
+        if(error) {
+            return res.send(error);
+        }
+        if (data.length == 0) {
+            return res.send({message: "User does not exist."});
+        }
+        exist = true;
+    })
+    if(exist) {
+        db.query(login, [username, password], (error, data) =>{
+            if(error) {
+                return res.send(error);
+            }
+            if (data.length == 0) {
+                return res.send({message: "Wrong password."})
+            }
+            return res.send(data)
+        })
+    }
+
+
 })
 
 app.listen(3001, ()=>{
