@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom"
 export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [message, setMessage] = useState("");
+    const [message, setMessage] = useState(" ");
     const changeUsername = (e) => {
         setUsername(e.target.value);
     }
@@ -16,13 +16,12 @@ export default function Login() {
     const submit = async (e) => {
         e.preventDefault();
         try{
-            const credentials = [username, password]
-            const res = await axios.post("http://localhost:3001/login", {username: credentials[0], password: credentials[1]});
-            console.log(res.data)
+            const credentials = {username: username, password: password}
+            const res = await axios.post("http://localhost:3001/login", credentials);
             if(res.data.message){
                 setMessage(res.data.message);
             } else {
-                console.log(res.data);
+                setMessage("Successfully logged in.")
             }
         } catch(err) {
             console.log(err);
@@ -41,8 +40,8 @@ export default function Login() {
                 <p>Password</p>
                 <input onChange={changePassword} type="password"></input>
             </div>
-            <p>{message}</p>
             <button onClick={submit}>Login</button>
+            <p>{message}</p>
         </main>
     )
 }

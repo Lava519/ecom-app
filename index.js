@@ -16,31 +16,33 @@ const db = mysql.createConnection({
 app.post("/login", (req, res)=>{
     const password = req.body.password;
     const username = req.body.username;
-    const checkUser = "SELECT * FROM Users WHERE Name=?;"
-    const login = "SELECT * FROM Users WHERE Name=? AND Password=?;"
-    let exist = false;
-    db.query(checkUser, [username], (error, data) =>{
+    const query = "SELECT * FROM Users WHERE Name=? AND Password=?;"
+    db.query(query, [username, password], (error, data) =>{
         if(error) {
             return res.send(error);
         }
         if (data.length == 0) {
-            return res.send({message: "User does not exist."});
+            return res.send({message: "Wrong username and password combination."});
         }
-        exist = true;
+        return res.json(data);
     })
-    if(exist) {
-        db.query(login, [username, password], (error, data) =>{
-            if(error) {
-                return res.send(error);
-            }
-            if (data.length == 0) {
-                return res.send({message: "Wrong password."})
-            }
-            return res.send(data)
-        })
-    }
+})
 
-
+app.post("/register", (req, res)=> {
+    const username = req.body.username;
+    const password = req.body.password
+    const checkUser = "SELECT * FROM Users WHERE Name=?;"
+    const query = 'INSERT INTO Users (Name, Password, Avatar, Role) VALUES (?, ?, 0, "Buyer")'
+    db.query(checkUser, [username], (checkErr, checkData) => {
+        if(checkErr)
+            return res.send(checkErr);
+        if(checkData.length == 0)
+            db.query(query, [username, password], (err, data) => {
+                if(err)
+                    return res.send(err);
+                return res.send(data);
+            }) 
+    })
 })
 
 app.listen(3001, ()=>{
