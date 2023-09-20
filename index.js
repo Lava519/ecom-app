@@ -28,6 +28,15 @@ app.post("/login", (req, res)=>{
     })
 })
 
+app.get("/products", (req, res) => {
+    query = "SELECT * FROM Products;";
+    db.query(query, (err, data) => {
+        if (err)
+            return res.send(err);
+        return res.json(data);
+    })
+})
+
 app.post("/register", (req, res)=> {
     const username = req.body.username;
     const password = req.body.password
