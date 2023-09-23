@@ -1,10 +1,29 @@
-var cors = require("cors");
-var mysql = require("mysql");
+const cors = require("cors");
+const mysql = require("mysql");
 const express = require("express");
-const app = express();
+const session = require("express-session")
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 
+const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST"],
+    credentials: true,
+}));
+
+app.use(session({
+    key: "userID",
+    secret: "secret",
+    resave: "false",
+    saveUninitialized: false,
+    cookie: {
+        expires: 60*60*24,
+    }
+}))
 
 const db = mysql.createConnection({
     host: "localhost",
@@ -13,17 +32,26 @@ const db = mysql.createConnection({
     database: "shop",
 });
 
+app.get("/login", (req, res)=>{
+    if(req.session.user) 
+        res.send({loggedIn: true, user: req.session.user});
+    else
+        res.send({loggedIn: false});
+})
+
 app.post("/login", (req, res)=>{
     const password = req.body.password;
     const username = req.body.username;
     const query = "SELECT * FROM Users WHERE Name=? AND Password=?;"
     db.query(query, [username, password], (error, data) =>{
         if(error) {
+            console.log(error);
             return res.send(error);
         }
         if (data.length == 0) {
             return res.send({message: "Wrong username and password combination."});
         }
+        req.session.user = data;
         return res.json(data);
     })
 })
@@ -55,6 +83,4 @@ app.post("/register", (req, res)=> {
 })
 
 app.listen(3001, ()=>{
-    console.log("HELLO WORLD");
-
 });

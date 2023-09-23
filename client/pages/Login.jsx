@@ -17,10 +17,11 @@ export default function Login() {
         e.preventDefault();
         try{
             const credentials = {username: username, password: password}
-            const res = await axios.post("http://localhost:3001/login", credentials);
+            const res = await axios.post("http://localhost:3001/login", credentials, {withCredentials: true});
             if(res.data.message){
                 setMessage(res.data.message);
             } else {
+                console.log(res.data)
                 setMessage("Successfully logged in.")
             }
         } catch(err) {
