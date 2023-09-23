@@ -1,0 +1,31 @@
+.nav {
+    height: 50px;
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+
+.avatar-container,.login-link {
+    margin-left: auto;
+}
+
+.avatar-container {
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatar {
+    max-width: 80%;
+    height: auto;
+    border-radius: 50%;
+}
+
+

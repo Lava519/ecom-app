@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "../styles/Nav.css"
 
 export default function Nav() {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -24,14 +25,14 @@ export default function Nav() {
     },[]);
 
     return (
-        <li>
+        <li className="nav">
             <ul>SHOP</ul>
             {loggedIn ?
-                ((<ul><img src={getImage(user.Avatar)} alt=""/></ul>)):
-                (<ul>Login</ul>)
+                ((<ul className="avatar-container"><img className="avatar" src={getImage(user.Avatar)} alt=""/></ul>)):
+                (<ul className="login-link">Login</ul>)
             }
             {loggedIn ?
-                ((<ul>Cart</ul>)):
+                ((<ul className="cart-link">Cart</ul>)):
                 (<></>)
             }
 
