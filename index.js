@@ -56,6 +56,16 @@ app.post("/login", (req, res)=>{
     })
 })
 
+app.get("/product/:id",(req, res) => {
+    const id = req.params.id;
+    const query = "SELECT * FROM Products WHERE ProductID=?;";
+    db.query(query, id, (err, data) => {
+        if (err)
+            return res.send(err);
+        return res.json(data);
+    })
+})
+
 app.get("/products", (req, res) => {
     query = "SELECT * FROM Products;";
     db.query(query, (err, data) => {

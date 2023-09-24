@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom"
 import axios from "axios";
 import "../styles/Nav.css"
 
@@ -25,18 +26,18 @@ export default function Nav() {
     },[]);
 
     return (
-        <li className="nav">
-            <ul>SHOP</ul>
+        <div className="nav">
+            <Link to="/">SHOP</Link>
             {loggedIn ?
-                ((<ul className="avatar-container"><img className="avatar" src={getImage(user.Avatar)} alt=""/></ul>)):
-                (<ul className="login-link">Login</ul>)
+                ((<Link className="avatar-container"><img className="avatar" src={getImage(user.Avatar)} alt=""/></Link>)):
+                (<Link to="/login" className="login-link">Login</Link>)
             }
             {loggedIn ?
-                ((<ul className="cart-link">Cart</ul>)):
+                ((<Link className="cart-link">Cart</Link>)):
                 (<></>)
             }
 
-        </li>
+        </div>
     );
 
 }

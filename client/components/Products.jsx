@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
+import { Link } from "react-router-dom"
 import "../styles/Products.css"
 
 export default function Products() {
@@ -25,16 +26,16 @@ export default function Products() {
     }
 
     return (
-        <div>
+        <div class="products-container">
             {products.map(p => {
                 return (
-                    <section className="product-container" key={p.ProductID}>
+                    <Link to={"/product/" + p.ProductID} className="product-container" key={p.ProductID}>
                         <div className="product-image">
                             <img src={getImage(p.Image)}></img>
                         </div>
                         <h2 className="product-name">{p.Name}</h2>
                         <p className="product-price">{addCurrency(p.Price, "$")}</p>
-                    </section>
+                    </Link>
                 )
             })}
         </div>
