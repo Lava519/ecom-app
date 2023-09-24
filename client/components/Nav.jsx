@@ -15,7 +15,6 @@ export default function Nav() {
                 const res = await axios.get("http://localhost:3001/login", {withCredentials: true});
                 setLoggedIn(res.data.loggedIn);
                 if (res.data.loggedIn) {
-                    console.log(res.data);
                     setUser(res.data.user[0]);
                 }
             }catch(err){
@@ -27,9 +26,9 @@ export default function Nav() {
 
     return (
         <div className="nav">
-            <Link to="/">SHOP</Link>
+            <Link className="home-link" to="/">SHOP</Link>
             {loggedIn ?
-                ((<Link className="avatar-container"><img className="avatar" src={getImage(user.Avatar)} alt=""/></Link>)):
+                ((<Link className="avatar-container" to="/profile"><p>{user.Name}</p><img className="avatar" src={getImage(user.Avatar)} alt=""/></Link>)):
                 (<Link to="/login" className="login-link">Login</Link>)
             }
             {loggedIn ?

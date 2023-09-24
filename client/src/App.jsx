@@ -4,6 +4,7 @@ import Home from "../pages/Home"
 import Login from "../pages/Login"
 import Register from "../pages/Register"
 import Product from "../pages/Product"
+import Profile from "../pages/Profile"
 
 import './App.css'
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/login" element={<Login/>}></Route>
           <Route path="/register" element={<Register/>}></Route>
           <Route path="/product/:id" element={<Product/>}></Route>
+          <Route path="/profile" element={<Profile/>}></Route>
         </Routes>
       </BrowserRouter>
     </>

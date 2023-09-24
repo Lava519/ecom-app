@@ -6,6 +6,7 @@ export default function Login() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState(" ");
+    const navigate = useNavigate();
     const changeUsername = (e) => {
         setUsername(e.target.value);
     }
@@ -21,8 +22,7 @@ export default function Login() {
             if(res.data.message){
                 setMessage(res.data.message);
             } else {
-                console.log(res.data)
-                setMessage("Successfully logged in.")
+                navigate("/")
             }
         } catch(err) {
             console.log(err);

@@ -6,6 +6,10 @@
     overflow: hidden;
 }
 
+.product-container:hover {
+    background-color: #292929;
+}
+
 .product-name {
     font-size: 1.2rem;
     max-width: 60%;
