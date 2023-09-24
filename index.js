@@ -75,6 +75,21 @@ app.get("/products", (req, res) => {
     })
 })
 
+app.get("/cart", (req, res) => {
+    const id = req.query.id
+    console.log(req.query);
+    query = "SELECT Products.ProductID, Orders.OrderID, Orders.Quantity, Products.Image, Products.Name, Products.Price FROM Products RIGHT JOIN Orders ON Products.ProductID = Orders.ProductID WHERE Orders.BuyerID=?;"
+    db.query(query, [id], (err, data) => {
+        if (err)
+            return res.send(err);
+        return res.json(data);
+    })
+})
+
+app.get("/sell", (req, res) => {
+
+})
+
 app.post("/register", (req, res)=> {
     const username = req.body.username;
     const password = req.body.password
