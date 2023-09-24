@@ -13,7 +13,6 @@ export default function Profile() {
         const getProfile = async()=>{
             try{
                 const resLogin = await axios.get("http://localhost:3001/login", {withCredentials: true});
-                console.log(resLogin.data);
                 if (resLogin.data.loggedIn){
                     setProfile(resLogin.data.user[0])
                 }else {
@@ -21,7 +20,6 @@ export default function Profile() {
                 }
                 const id = resLogin.data.user[0].UserID;
                 const resCart = await axios.get("http://localhost:3001/cart", {params: {id: id}});
-                console.log
                 setCart(resCart.data);
             }catch(err) {
                 console.log(err);

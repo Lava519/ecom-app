@@ -45,7 +45,6 @@ app.post("/login", (req, res)=>{
     const query = "SELECT * FROM Users WHERE Name=? AND Password=?;"
     db.query(query, [username, password], (error, data) =>{
         if(error) {
-            console.log(error);
             return res.send(error);
         }
         if (data.length == 0) {
@@ -77,7 +76,6 @@ app.get("/products", (req, res) => {
 
 app.get("/cart", (req, res) => {
     const id = req.query.id
-    console.log(req.query);
     query = "SELECT Products.ProductID, Orders.OrderID, Orders.Quantity, Products.Image, Products.Name, Products.Price FROM Products RIGHT JOIN Orders ON Products.ProductID = Orders.ProductID WHERE Orders.BuyerID=?;"
     db.query(query, [id], (err, data) => {
         if (err)
