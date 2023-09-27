@@ -24,6 +24,14 @@ export default function Nav() {
         getLogin();
     },[]);
 
+    const logout =  async ()=>{
+        try {
+            const res = axios.post("http://localhost:3001/logout");
+            console.log(res);
+        } catch (err) {
+            console.log(err);
+        }
+    }
     return (
         <div className="nav">
             <Link className="home-link" to="/">SHOP</Link>
@@ -32,7 +40,7 @@ export default function Nav() {
                 (<Link to="/login" className="login-link">Login</Link>)
             }
             {loggedIn ?
-                ((<Link className="cart-link">Cart</Link>)):
+                ((<Link onClick={()=>{logout()}} className="cart-link">Logout</Link>)):
                 (<></>)
             }
 

@@ -55,6 +55,12 @@ app.post("/login", (req, res)=>{
     })
 })
 
+app.post("/logout", (req, res)=> {
+    req.session.destroy();
+    console.log("WORK");
+    return res.send("YAY");
+})
+
 app.get("/product/:id",(req, res) => {
     const id = req.params.id;
     const query = "SELECT * FROM Products WHERE ProductID=?;";
@@ -82,6 +88,32 @@ app.get("/cart", (req, res) => {
             return res.send(err);
         return res.json(data);
     })
+})
+
+app.post("/cart", (req, res) => {
+    const id = req.body.profile.UserID;
+    let hasOrder = false;
+    const check = "SELECT * FROM Orders WHERE BuyerID = ?;";
+    db.query(check, [id], (err, data) => {
+        if (err) {
+            return res.send(err);
+        }
+        if (data.length !== 0) {
+            hasOrder = true;
+            return res.send({hasOrder: hasOrder});
+        }
+    })
+    if (!hasOrder) {
+        const pId = req.body.product.ProductID;
+        const q = req.body.quantity;
+        const query = "INSERT INTO Orders (BuyerID, ProductID, Quantity) VALUES (?, ?, ?);"
+        db.query( query, [id, pId, q], (err, data)=> {
+            if (err) {
+                return res.send(err);
+            }
+            return res.json(data);
+        })
+    }
 })
 
 app.get("/sell", (req, res) => {
