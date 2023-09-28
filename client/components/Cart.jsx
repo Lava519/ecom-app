@@ -34,9 +34,6 @@ export default function Cart({product, profile}){
         try {
             if (value > 0 && profile) {
                 const res = await axios.post("http://localhost:3001/cart", {product: product, profile: profile, quantity: value}, {withCredentials: true});
-                if (res.data.message) {
-                    const putRes = await axios.put("http://localhost:3000/cart", {product: product, profile: profile, quantity: value}, {withCredentials: true});
-                }
             }
         } catch(err) {
             console.log(err);

@@ -59,7 +59,8 @@ export default function Profile() {
                                     <img src={getImage(c.Image)}></img>
                                 </div>
                                 <h2 className="product-name">{c.Name}</h2>
-                                <p className="product-price">{addCurrency(c.Price, "$")}</p>
+                                <p>{c.Quantity}</p>
+                                <p className="product-price">{addCurrency(c.Price * c.Quantity, "$")}</p>
                             </Link>
                         )
                         })}

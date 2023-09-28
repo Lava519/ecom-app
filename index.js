@@ -56,9 +56,7 @@ app.post("/login", (req, res)=>{
 })
 
 app.post("/logout", (req, res)=> {
-    req.session.destroy();
-    console.log("WORK");
-    return res.send("YAY");
+    req.session = null;
 })
 
 app.get("/product/:id",(req, res) => {
@@ -90,30 +88,39 @@ app.get("/cart", (req, res) => {
     })
 })
 
+app.put("/cart", (req, res) => {
+    const id = req.body.profile.UserID;
+    const pId = req.body.product.ProductID;
+    let q = req.body.quantity;
+    const getQuantity = "SELECT Quantity FROM Orders WHERE BuyerID = ?";
+    db.query(getQuantity, [id], (err, data) => {
+        if (err)
+            return res.send(err);
+        console.log(data);
+    })
+})
+
 app.post("/cart", (req, res) => {
     const id = req.body.profile.UserID;
-    let hasOrder = false;
     const check = "SELECT * FROM Orders WHERE BuyerID = ?;";
-    db.query(check, [id], (err, data) => {
-        if (err) {
-            return res.send(err);
+    db.query(check, [id], (checkErr, checkData) => {
+        if (checkErr) {
+            return res.send(checkErr);
         }
-        if (data.length !== 0) {
-            hasOrder = true;
-            return res.send({hasOrder: hasOrder});
+        if (checkData.length > 0) {
+            return res.send({hasOrder: true});
+        }else {
+            const pId = req.body.product.ProductID;
+            const q = req.body.quantity;
+            const query = "INSERT INTO Orders (BuyerID, ProductID, Quantity) VALUES (?, ?, ?);"
+            db.query( query, [id, pId, q], (err, data)=> {
+                if (err) {
+                    return res.send(err);
+                }
+                return res.json(data);
+            })
         }
     })
-    if (!hasOrder) {
-        const pId = req.body.product.ProductID;
-        const q = req.body.quantity;
-        const query = "INSERT INTO Orders (BuyerID, ProductID, Quantity) VALUES (?, ?, ?);"
-        db.query( query, [id, pId, q], (err, data)=> {
-            if (err) {
-                return res.send(err);
-            }
-            return res.json(data);
-        })
-    }
 })
 
 app.get("/sell", (req, res) => {
