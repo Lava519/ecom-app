@@ -1,0 +1,28 @@
+.cart-items-container > .cart-item {
+  max-height: 150px;
+  display: flex;
+  align-items: stretch;
+  gap: 1em;
+  padding: 1em;
+}
+
+.cart-items-container .cart-item-image-container {
+  width: 150px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.cart-items-container .cart-item-delete-container {
+  margin-left: auto;
+  cursor: pointer;
+  width: 50px;
+  display: flex;
+  align-items: center;
+}
+.cart-items-container .cart-item-delete {
+  max-width: 100%;
+}
+
+.cart-items-container .cart-item-image {
+  max-width: 100%;
+}

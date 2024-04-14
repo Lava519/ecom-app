@@ -1,0 +1,25 @@
+const query = require('./pool.js');
+
+const getUser = async (input) => {
+  const QUERY = "SELECT UserID, UserName, Password FROM Users WHERE UserName=?;";
+  let data = await query(QUERY, input);
+  return data;
+} 
+
+const setUser = async (input) => {
+  const QUERY = 'INSERT INTO Users (FullName, UserName, Password, Avatar, Role) VALUES (?, ?, ?, 0, "Buyer");';
+  let data = await query(QUERY, input);
+  return data;
+}
+
+const authenticateUser = async (input) => {
+  const QUERY = 'SELECT FullName, UserName, Avatar FROM Users WHERE UserID = ?;';
+  let data = await query(QUERY, input);
+  return data;
+}
+
+module.exports = {
+  getUser,
+  setUser,
+  authenticateUser
+}

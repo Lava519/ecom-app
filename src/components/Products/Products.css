@@ -1,0 +1,21 @@
+.products-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+.products-container >.product {
+  display: flex;
+  max-height: 150px;
+  cursor: pointer;
+}
+.products-container .product-image-container {
+  overflow: hidden;
+  width: 150px;
+  height: 150px;
+}
+.products-container .product-price {
+  margin-left: auto;
+}
+.product-image-container > .product-image {
+  max-height: 100%;
+}
