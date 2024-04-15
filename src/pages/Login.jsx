@@ -36,6 +36,9 @@ export default function Login() {
   const handleSubmit = () => {
     submitToDB();
   }
+  const register = () => {
+    nav("/register");
+  }
 
   return (
     <div>
@@ -43,6 +46,7 @@ export default function Login() {
       <input onChange={handleUsernameChange} type="text"/>
       <input onChange={handlePasswordChange} type="text"/>
       <button onClick={handleSubmit}>Login</button>
+      <button onClick={register}>Click here to register</button>
     </div>
   )
 } 

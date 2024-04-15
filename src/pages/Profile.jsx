@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CartItems from '../components/CartItems/CartItems'
 import Nav from "../components/Nav/Nav";
+import Post from "../components/Post/Post";
+import ProfileSettings from "../components/ProfileSettings/ProfileSettings";
 
 
 export default function Profile() {
@@ -29,6 +31,7 @@ export default function Profile() {
   return (
     <>
       <Nav></Nav>
+      <ProfileSettings></ProfileSettings>
       <CartItems id={userID}></CartItems>
     </>
   )

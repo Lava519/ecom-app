@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import Nav from '../components/Nav/Nav';
 
 export default function Register() {
   const [username, setUsername] = useState('');
@@ -68,6 +69,7 @@ export default function Register() {
 
   return (
     <div>
+      <Nav></Nav>
       <h1>REGISTER</h1>
       <section>
         <label>First Name</label>
@@ -87,7 +89,7 @@ export default function Register() {
         <label>Confirm Password</label>
         <input onChange={handleDPaswordInput} type="password" />
       </section>
-      <button onClick={handleSubmitPress}>YO</button>
+      <button onClick={handleSubmitPress}>Register</button>
     </div>
   )
 } 

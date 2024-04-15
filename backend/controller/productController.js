@@ -15,7 +15,14 @@ const product =  async (req, res) => {
   res.send({data})
 };
 
+const post = (req, res) => {
+  console.log(req.body);
+  console.log(req.query);
+  res.sendStatus(200);
+}
+
 module.exports = {
   products,
-  product
+  product,
+  post
 }

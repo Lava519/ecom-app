@@ -23,7 +23,7 @@ const cart = async (req, res) => {
   const userID = req.body.userID;
   let data = await getCart([userID, productID]);
     if (data.length != 0)
-      data = updateCart([quantity, userID, productID]);
+      data = updateCartItem([quantity, userID, productID]);
     else
       data = setCart([userID, productID, quantity]);
   res.sendStatus(201);
