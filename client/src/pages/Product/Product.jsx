@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Nav from "../../components/Nav/Nav";
 import Cart from "../../components/Cart/Cart";
+import "./Product.css";
 
 export default function Product() {
   const [product, setProduct] = useState(null);
@@ -47,7 +48,7 @@ export default function Product() {
   return(
     <>
       <Nav></Nav>
-      { product && <div>
+      { product && <div className="product-page-container">
         <div>
           <img src={product.Image} />
         </div>
