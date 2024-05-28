@@ -1,0 +1,28 @@
+.product-page-container {
+    --image-size: 450px;
+    --image-border-radius: 20px;
+    --product-vertical-padding: 25px;
+    min-height: calc(100vh - 60px);
+    display: flex;
+    align-items: stretch;
+}
+
+.product-page .product-image-container {
+    height: 650px;
+    width: 650px;
+}
+
+.product-page .product-image-container > .product-image {
+    height: 650px;
+    width: 650px;
+    border-radius: var(--image-border-radius);
+} 
+
+.product-page-container .product-page {
+    display: flex;
+    gap: 6em;
+    width: 100%;
+    padding: 0 6em;
+    justify-content: center;
+    align-items: center;
+}

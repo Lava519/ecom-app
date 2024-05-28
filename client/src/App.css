@@ -1,0 +1,16 @@
+button {
+    border: none;
+    padding: 0.5em;
+    border-radius: 6px;
+}
+input {
+    border: none;
+    padding: 0.5em;
+    border-radius: 6px;
+}
+
+#root {
+    --nav-spacing: 60px;
+    position: relative;
+
+}

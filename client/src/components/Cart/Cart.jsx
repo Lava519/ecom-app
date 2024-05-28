@@ -1,4 +1,5 @@
 import { useState ,useEffect, useRef } from 'react';
+import "./Cart.css"
 
 export default function Cart({id, item}) {
   const [quantity, setQuantity] = useState(0);
@@ -41,13 +42,13 @@ export default function Cart({id, item}) {
     }
   }
   return (
-    <div>
-      <div>
-        <button onClick={handleDecrement}>-</button>
-        <input ref={number} onChange={handleCartInput} maxLength="2" type="text" />
-        <button onClick={handleIncrement}>+</button>
+    <div className="cart-container">
+      <div className="cart-buttons-container">
+        <button className="cart-decrease" onClick={handleDecrement}>-</button>
+        <input className="cart-input" ref={number} onChange={handleCartInput} maxLength="2" type="text" />
+        <button className="cart-increase" onClick={handleIncrement}>+</button>
       </div>
-      <button onClick={handleAddToCart}>Add to Cart</button>
+      <button className="add-to-cart" onClick={handleAddToCart}>Add to Cart</button>
     </div>
   )
 }

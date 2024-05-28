@@ -49,12 +49,18 @@ export default function Product() {
     <>
       <Nav></Nav>
       { product && <div className="product-page-container">
-        <div>
-          <img src={product.Image} />
+        <div className="product-page">
+          <div className="product-image-container">
+            <img className="product-image" src={product.Image} />
+          </div>
+          <div className="product-">
+            <h1>{product.Name}</h1>
+            <p>{product.Description}</p>
+            <h2>{product.Price}</h2>
+            <Cart item={product} id={userID}></Cart>
+          </div>
         </div>
-        <h1>{product.Name}</h1>
-        <h2>{product.Price}</h2>
-        <Cart item={product} id={userID}></Cart>
+
       </div> }
     </>
   )
