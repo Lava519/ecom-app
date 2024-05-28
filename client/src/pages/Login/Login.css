@@ -45,8 +45,6 @@
 
 .login-form-container .register-button {
     margin-bottom: 1em;
-}
-
-.login-form-container .register-button {
     width: 250px;
+    text-transform: capitalize;
 }

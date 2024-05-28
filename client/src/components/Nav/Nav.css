@@ -40,6 +40,9 @@
 }
 
 .nav-container .nav-avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   max-width: 35px;
   padding: 0 10px;
 }

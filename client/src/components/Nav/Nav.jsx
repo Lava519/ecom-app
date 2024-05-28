@@ -40,8 +40,7 @@ export default function Nav() {
       <ul className="nav">
         <li className="nav-home" onClick={navHome}>Home</li>
         {name && <li>Cart</li>}
-        {name ? <li>{name}</li> : <li className="nav-login" onClick={navLogin}>Login</li> }
-        {avatar && <li className="nav-avatar-container" onClick={navProfile}><img className="nav-avatar" src={`${avatar}`} /></li>}
+        {name ? <li onClick={navProfile}>{name}<span className="nav-avatar-container"><img className="nav-avatar" src={`${avatar}`} /></span></li> : <li className="nav-login" onClick={navLogin}>Login</li> }
       </ul>
     </div>
   )
