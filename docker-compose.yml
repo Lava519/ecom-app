@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  server:
+    build:
+      context: ./server
+    depends_on:
+      - "db"
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    develop:
+      watch:
+        - action: rebuild
+          path: ./server
+    network_mode: "host"
+#    volumes:
+#      - ecom_server_volume:/app
+  client:
+    build:
+      context: ./client
+    ports:
+      - "5173:5173"
+    network_mode: "host"
+    develop:
+      watch:
+        - action: sync
+          path: ./client
+          target: /app
+  db:
+    image: mariadb
+    network_mode: "host"
+    environment:
+      MARIADB_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+#volumes:
+#  ecom_server_volume:
+
+
