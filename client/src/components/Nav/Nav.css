@@ -1,6 +1,7 @@
 .nav-container {
   height: 60px;
   position: relative;
+  z-index: 2;
 }
 .nav-container .nav {
   background-color: #151513;

@@ -1,4 +1,4 @@
-import { useState ,useEffect, useRef } from 'react';
+import { useState , useRef } from 'react';
 import "./Cart.css"
 
 export default function Cart({id, item}) {
@@ -20,6 +20,8 @@ export default function Cart({id, item}) {
     })
   }
   const handleAddToCart = () => {
+    number.current.value = 0;
+    setQuantity(0);
     if (localStorage.getItem('authToken') && quantity > 0)
       addToCart();
   }

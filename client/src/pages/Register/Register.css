@@ -1,0 +1,75 @@
+.register-form-container {
+    display: flex;
+    height: calc(100vh - 60px);
+}
+
+.register-form-container .register-form {
+    background-color: #151513;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    max-width: 350px;
+    max-height: 800px;
+    padding: 2em 2em;
+    margin: auto auto;
+    gap: 0.5em;
+}
+
+.register-form-container .register-form-title {
+    text-align: center;
+    padding: 1.2em 0;
+}
+
+.register-form-container .register-name-container {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr;
+    grid-template-rows: 0.5fr 1fr;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 1em;
+}
+
+
+.register-form-container .register-username-container,.register-password-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    margin-bottom: 0.5em;
+}
+
+.register-form-container .password {
+    margin-top: 1em;
+}
+
+.register-form-container .register-button,.register-button {
+    width: 200px;
+    font-size: 1.2rem;
+    padding: 0.5em 0.5em;
+    margin: 0 auto;
+}
+
+.register-form-container input:focus {
+    outline: none;
+    border: 2px solid #FFF;
+    margin: -2px;
+}
+
+.register-form-container .register-button {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.register-form-container .register-button {
+    margin-bottom: 1em;
+}
+
+.register-form-container .register-button {
+    width: 250px;
+}
+
+.warning {
+    color: #F55;
+    font-size: 0.9rem;
+    margin-top: -0.5em;
+}

@@ -8,6 +8,7 @@ export default function Product() {
   const [product, setProduct] = useState(null);
   const [userID, setUserID] = useState(null);
   const location = useLocation();
+  const currency = '$';
   useEffect(() => {
 
   async function getUserID() {
@@ -53,10 +54,10 @@ export default function Product() {
           <div className="product-image-container">
             <img className="product-image" src={product.Image} />
           </div>
-          <div className="product-">
-            <h1>{product.Name}</h1>
-            <p>{product.Description}</p>
-            <h2>{product.Price}</h2>
+          <div className="product-text-container">
+            <h1 className="product-name">{product.Name}</h1>
+            <p className="product-description">{product.Description}</p>
+            <h2 className='product-price'>{product.Price}{currency}</h2>
             <Cart item={product} id={userID}></Cart>
           </div>
         </div>

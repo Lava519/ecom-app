@@ -1,5 +1,6 @@
 import {useState} from 'react';
-import Nav from '../components/Nav/Nav';
+import Nav from '../../components/Nav/Nav';
+import "./Register.css";
 
 export default function Register() {
   const [username, setUsername] = useState('');
@@ -57,7 +58,8 @@ export default function Register() {
   const handleDPaswordInput = (e) => {
     setDPassword(e.target.value);
   }
-  const handleSubmitPress = () => {
+  const handleSubmitPress = (e) => {
+    e.preventDefault();
     if (password != dpassword)
       setSamePassword(false);
     else if (validUsername && validPassword) {
@@ -70,26 +72,30 @@ export default function Register() {
   return (
     <div>
       <Nav></Nav>
-      <h1>REGISTER</h1>
-      <section>
-        <label>First Name</label>
-        <input onChange={handleFirstNameInput} type="text" />
-        <label>Last Name</label>
-        <input onChange={handleLastNameInput} type="text" />
-      </section>
-      <section>
-        <label>Username</label>
-        <input onChange={handleUsernameInput} type="text" />
-        {!validUsername && <p className="warning">Not valid username</p>}
-      </section>
-      <section>
-        <label>Password</label>
-        <input onChange={handlePasswordInput} type="password" />
-        {!validPassword && <p className="warning">Not valid password</p>}
-        <label>Confirm Password</label>
-        <input onChange={handleDPaswordInput} type="password" />
-      </section>
-      <button onClick={handleSubmitPress}>Register</button>
+      <div className="register-form-container">
+        <form className="register-form" onSubmit={handleSubmitPress}>
+          <h2 className="register-form-title">REGISTER</h2>
+          <section className="register-name-container">
+            <p className="first-name">First Name:</p>
+            <input className="first-name-input" onChange={handleFirstNameInput} type="text" />
+            <p className="last-name">Last Name:</p>
+            <input className="last-name-input" onChange={handleLastNameInput} type="text" />
+          </section>
+          <section className="register-username-container">
+            <p className="userame">Username:</p>
+            <input className="username-input" onChange={handleUsernameInput} type="text" />
+            {!validUsername && <p className="warning">Not valid username</p>}
+          </section>
+          <section className="register-password-container">
+            <p className="password">Password:</p>
+            <input className="password-input" onChange={handlePasswordInput} type="password" />
+            {!validPassword && <p className="warning">Not valid password</p>}
+            <p className="password-confirm">Confirm Password:</p>
+            <input className="password-confirm-input" onChange={handleDPaswordInput} type="password" />
+          </section>
+          <button className="register-button" type="submit">Register</button>
+        </form>
+      </div>
     </div>
   )
 } 

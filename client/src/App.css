@@ -2,6 +2,7 @@ button {
     border: none;
     padding: 0.5em;
     border-radius: 6px;
+    cursor: pointer;
 }
 input {
     border: none;

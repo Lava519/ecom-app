@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile.jsx";
 import Product from "./pages/Product/Product"
-import Register from "./pages/Register";
-import Login from "./pages/Login";
+import Register from "./pages/Register/Register.jsx";
+import Login from "./pages/Login/Login";
 import './App.css'
 
 function App() {

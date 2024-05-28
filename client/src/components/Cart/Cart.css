@@ -5,7 +5,6 @@
 .cart-container button {
     border-radius: var(--cart-border-radius);
     height: 46px;
-    cursor: pointer;
 }
 
 .cart-container .cart-buttons-container {
