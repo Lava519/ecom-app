@@ -7,7 +7,7 @@ const getUser = async (input) => {
 } 
 
 const setUser = async (input) => {
-  const QUERY = 'INSERT INTO Users (FullName, UserName, Password, Avatar, Role) VALUES (?, ?, ?, "none", "Buyer");';
+  const QUERY = 'INSERT INTO Users (FullName, UserName, Password, Avatar, Role) VALUES (?, ?, ?, "none", "Seller");';
   let data = await query(QUERY, input);
   return data;
 }
