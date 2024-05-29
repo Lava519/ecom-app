@@ -1,4 +1,5 @@
 import { useState } from "react"
+import "./UploadForm.css";
 export default function UploadForm({toggle, userID}) {
     const [name, setName] = useState(null);
     const [description, setDescription] = useState(null);
@@ -38,20 +39,20 @@ export default function UploadForm({toggle, userID}) {
           })
     }
     return (
-        <div>
-            <div></div>
-            <form onSubmit={upload}>
-                <a onClick={toggle}>Close</a>
-                <h2>Upload Product</h2>
-                <label>Name</label>
-                <input onChange={(e)=>{setName(e.target.value)}} type="text" />
-                <label>Description</label>
-                <input onChange={(e)=>{setDescription(e.target.value)}} type="text" />
-                <label>Price</label>
-                <input onChange={handlePriceInput} type="text" />
-                <label>Image</label>
-                <input onChange={setFile} type="file" accept=".jpg" />
-                <button type="submit">Upload</button>
+        <div className="upload-form-container">
+            <div onClick={toggle} className="overlay"></div>
+            <form className="upload-form" onSubmit={upload}>
+                <a className="close" onClick={toggle}>X</a>
+                <h2 className="title">Upload Product</h2>
+                <label className="upload-form-name-title">Name</label>
+                <input className="upload-form-name" onChange={(e)=>{setName(e.target.value)}} type="text" />
+                <label className="upload-form-description-title">Description</label>
+                <textarea className="upload-form-description" onChange={(e)=>{setDescription(e.target.value)}} maxLength="128" rows="8" type="text" />
+                <label className="upload-form-price-title">Price</label>
+                <input className="upload-form-price" onChange={handlePriceInput} type="text" />
+                <label className="upload-form-image-title">Image</label>
+                <input className="upload-form-image" onChange={setFile} type="file" accept=".jpg" />
+                <button className="upload" type="submit">Upload</button>
             </form>
         </div>
 

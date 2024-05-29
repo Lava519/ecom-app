@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import UploadForm from '../UploadForm/UploadForm';
+import "./ProfileSettings.css";
 
 export default function ProfileSettings() {
   const [profile, setProfile] = useState({});
@@ -49,15 +50,21 @@ export default function ProfileSettings() {
       setShowUpload(true);
   }
   return (
-    <div>
-      <img style={{maxWidth: 150}} src={profile.Avatar} />
-      <p>Full Name: {profile.FullName}</p>
-      <p>Username: {profile.UserName}</p>
-      {profile.Role === "Seller" && <button onClick={()=>{toggleUploadForm()}}>Upload</button>}
-      {showUpload && 
-        <UploadForm toggle={toggleUploadForm} userID={userID}></UploadForm>
-      }
-      <button onClick={handleLogout}>Logout</button>
+    <div className="user-profile-container">
+      <div className="user-profile">
+        <div className="avatar-container">
+          <img className="avatar" style={{maxWidth: 150}} src={profile.Avatar} /> 
+        </div>
+        <p className="name-title">Full Name</p>
+        <p className="name">{profile.FullName}</p>
+        <p className="name-title">Username</p>
+        <p className="name">{profile.UserName}</p>
+        {profile.Role === "Seller" && <button className="upload-button" onClick={()=>{toggleUploadForm()}}>Upload</button>}
+        {showUpload && 
+          <UploadForm toggle={toggleUploadForm} userID={userID}></UploadForm>
+        }
+        <button className="logout" onClick={handleLogout}>Logout</button>
+      </div>
     </div>
   )
 }

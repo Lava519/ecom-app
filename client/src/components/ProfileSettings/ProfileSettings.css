@@ -1,0 +1,43 @@
+.user-profile-container {
+    height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-profile-container .user-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #151513;
+    padding: 2em;
+    border-radius: 15px;
+    width: 250px;
+}
+
+.user-profile-container .avatar-container {
+    margin-bottom: 2em;
+} 
+
+.user-profile-container .avatar {
+    border-radius: 50%;
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.user-profile-container .name-title {
+    text-align: center;
+    margin-bottom: 0.2em;
+}
+
+.user-profile-container .name {
+    text-align: center;
+    font-size: 1.6rem;
+    margin-bottom: 1em;
+}
+
+.user-profile-container .upload-button {
+    margin-bottom: 2em;
+}
