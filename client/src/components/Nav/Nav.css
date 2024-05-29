@@ -54,3 +54,33 @@
   margin-right: auto;
   cursor: pointer;
 }
+
+.nav-container .dropdown-cart {
+  display: flex;
+  justify-content: center;
+  overflow-y: scroll;
+  position: fixed;
+  z-index: 4;
+  top: 60px;
+  width: 400px;
+  right: 25px;
+  height: 100px;
+  background-color: #151513;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.nav-container .hide {
+  display: none!important;
+}
+
+.overlay {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  z-index: -1;
+}

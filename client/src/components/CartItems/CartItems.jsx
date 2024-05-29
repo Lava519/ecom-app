@@ -36,7 +36,7 @@ export default function CartItems() {
       setProducts(data);
     } 
     getCartItems();
-  }, [])
+  }, [/* NEED DEPENDENCY IN ORDER TO UPDATE */])
   return (
     <div className="cart-items-container">
       {products &&
@@ -51,12 +51,13 @@ export default function CartItems() {
                 <p className="cart-item-quantity">{`${product.Price*product.Quantity}$`}</p>
               </div>
               <div className="cart-item-delete-container" onClick={()=>{handleDelete(product.ProductID)}}>
-                <img className="cart-item-delete" src="./Delete.svg" />
+                <img className="cart-item-delete" src="/Delete.svg" />
               </div>
             </section>
           )
         })
       }
+      { products && products <= 0 ? <p className='empty-cart'>Your cart is empty</p> : <></>}
     </div>
   )
 }

@@ -1,13 +1,16 @@
+.cart-items-container {
+  flex-grow: 1;
+}
+
 .cart-items-container > .cart-item {
   max-height: 150px;
   display: flex;
-  align-items: stretch;
   gap: 1em;
   padding: 1em;
 }
 
 .cart-items-container .cart-item-image-container {
-  width: 150px;
+  width: 50px;
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -15,14 +18,29 @@
 .cart-items-container .cart-item-delete-container {
   margin-left: auto;
   cursor: pointer;
-  width: 50px;
+  width: 25px;
   display: flex;
   align-items: center;
 }
+
+.cart-items-container .cart-item-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+}
+
 .cart-items-container .cart-item-delete {
   max-width: 100%;
 }
 
 .cart-items-container .cart-item-image {
   max-width: 100%;
+}
+
+.cart-items-container .empty-cart {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

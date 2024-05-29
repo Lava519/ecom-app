@@ -1,9 +1,11 @@
 import "./Nav.css";
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import CartItems from '../CartItems/CartItems';
 export default function Nav() {
   const [name, setName] = useState(null);
   const [avatar, setAvatar] = useState(null);
+  const [hideCart, setHideCart] = useState(true)
   const nav = useNavigate();
   async function authenticate() {
     const res = await fetch("http://localhost:3000/user/authenticate", {
@@ -19,7 +21,6 @@ export default function Nav() {
       setName(data.FullName);
       setAvatar(data.Avatar);
     }
-
   }
   useEffect(() => {
     if(localStorage.getItem('authToken')) {
@@ -32,6 +33,12 @@ export default function Nav() {
   const navHome = () => {
     nav("/");
   }
+  const toggleCart = () => {
+    if (hideCart)
+      setHideCart(false);
+    else
+      setHideCart(true);
+  }
   const navProfile = () => {
     nav("/profile")
   }
@@ -39,9 +46,13 @@ export default function Nav() {
     <div className="nav-container">
       <ul className="nav">
         <li className="nav-home" onClick={navHome}>Home</li>
-        {name && <li>Cart</li>}
+        {name && <li onClick={toggleCart}>Cart</li>}
         {name ? <li onClick={navProfile}>{name}<span className="nav-avatar-container"><img className="nav-avatar" src={`${avatar}`} /></span></li> : <li className="nav-login" onClick={navLogin}>Login</li> }
+        <div className={`dropdown-cart ${hideCart===true ? "hide" : ""}`}>
+          <CartItems></CartItems>
+        </div>
       </ul>
+      <div onClick={toggleCart} className={`overlay ${hideCart===true ? "hide" : ""}`}></div>
     </div>
   )
 } 
