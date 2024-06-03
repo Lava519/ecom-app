@@ -32,7 +32,6 @@ export default function Profile() {
     <>
       <Nav></Nav>
       <ProfileSettings></ProfileSettings>
-      <CartItems id={userID}></CartItems>
     </>
   )
 }

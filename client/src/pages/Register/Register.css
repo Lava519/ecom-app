@@ -63,6 +63,8 @@
 
 .warning {
     color: #F55;
+    text-align: center;
+    text-wrap: wrap;
     font-size: 0.9rem;
     margin-top: -0.5em;
 }

@@ -6,7 +6,7 @@ import "./Login.css";
 export default function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [token, setToken] = useState('');
+  const [validLogin, setValidLogin] = useState(true);
   const nav = useNavigate();
   async function submitToDB() {
     const res = await fetch("http://localhost:3000/user/login", {
@@ -26,13 +26,18 @@ export default function Login() {
       localStorage.setItem("authToken", data.accessToken);
       nav("/");
     }
+    else if (res.status === 202) {
+      setValidLogin(false);
+    }
   }
   
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
+    setValidLogin(true);
   }
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
+    setValidLogin(true);
   }
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,6 +53,7 @@ export default function Login() {
       <div className="login-form-container">
         <form className="login-form" onSubmit={handleSubmit}>
           <h2 className="login-form-title">LOGIN</h2>
+          {!validLogin && <p className="warning">We couldn't find this account</p>}
           <p className="username">Username:</p>
           <input className="username-input" onChange={handleUsernameChange} type="text"/>
           <p className="password">Password:</p>

@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 import Nav from '../../components/Nav/Nav';
 import "./Register.css";
 
@@ -12,6 +13,8 @@ export default function Register() {
   const [validPassword, setValidPassword] = useState(true);
   const [validUsername, setValidUsername] = useState(true);
   const [samePassword, setSamePassword] = useState(true);
+  const [uniqueUsername, setUniqueUsername] = useState(true);
+  const nav = useNavigate();
   async function submitToDB() {
     const res = await fetch("http://localhost:3000/user/register", {
     method: "post",
@@ -26,13 +29,12 @@ export default function Register() {
       password: password,
       })
     })
-    if (res.status == 202) {
-      const data = res.json();
-      console.log(data.message);
+    if (res.status === 200) {
+      nav("/login");
     }
-     
-    else
-      console.log(res);
+    else if (res.status === 202) {
+      setUniqueUsername(false);
+    }
   }
 
   const handleFirstNameInput = (e) => {
@@ -45,8 +47,10 @@ export default function Register() {
     setUsername(e.target.value);
     if (username.length < 3)
       setValidUsername(false);
-    else
+    else {
       setValidUsername(true);
+      setUniqueUsername(true);
+    }
   }
   const handlePasswordInput = (e) => {
     setPassword(e.target.value);
@@ -63,7 +67,6 @@ export default function Register() {
     if (password != dpassword)
       setSamePassword(false);
     else if (validUsername && validPassword) {
-      console.log(`${fName} ${lName}`);
       setSamePassword(true);
       submitToDB();
     }
@@ -85,6 +88,7 @@ export default function Register() {
             <p className="userame">Username:</p>
             <input className="username-input" onChange={handleUsernameInput} type="text" />
             {!validUsername && <p className="warning">Not valid username</p>}
+            {!uniqueUsername && <p className="warning">Username already exists</p>}
           </section>
           <section className="register-password-container">
             <p className="password">Password:</p>

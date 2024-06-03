@@ -41,7 +41,7 @@ const login = async (req, res)=> {
         res.json({ accessToken: accessToken });
       }
       else
-        res.status(200).send({message: "Wrong Password"});
+        res.status(202).send({message: "Wrong Password"});
     });
   }     
 }
