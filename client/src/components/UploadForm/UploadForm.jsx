@@ -6,7 +6,6 @@ export default function UploadForm({ displayMessage,toggle, userID}) {
     const [price, setPrice] = useState(null);
     const [image, setImage] = useState(null);
     const setFile = (e) => {
-        console.log(e.target.files[0])
         const reader = new FileReader();
         reader.readAsDataURL(e.target.files[0]);
         reader.onload = () => {
@@ -18,7 +17,6 @@ export default function UploadForm({ displayMessage,toggle, userID}) {
           e.target.value = 0;
         e.target.value = e.target.value.replace(/\D/g,'');
         setPrice(Number(e.target.value));
-        console.log(description);
     }
 
     async function upload(e) {
@@ -38,7 +36,6 @@ export default function UploadForm({ displayMessage,toggle, userID}) {
                 UserID: userID
             })
           })
-        console.log(res);
         if (res.status === 200) {
             toggle();
             displayMessage(false);

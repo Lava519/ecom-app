@@ -33,7 +33,6 @@ export default function ProfileSettings() {
       })
       if (res.status === 200) {
         const data = await res.json().then( (x) => x.data[0]);
-        console.log(data);
         setProfile(data);
         getUserID();
       }
@@ -48,7 +47,6 @@ export default function ProfileSettings() {
   const handleDisplayMessage = (error) => {
     setDisplayMessage(false);
     setErrorMessage(false);
-    console.log(error);
     if (error) {
       setErrorMessage(true);
     }
