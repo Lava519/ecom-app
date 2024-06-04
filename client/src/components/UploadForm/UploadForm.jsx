@@ -1,6 +1,6 @@
 import { useState } from "react"
 import "./UploadForm.css";
-export default function UploadForm({toggle, userID}) {
+export default function UploadForm({ displayMessage,toggle, userID}) {
     const [name, setName] = useState(null);
     const [description, setDescription] = useState(null);
     const [price, setPrice] = useState(null);
@@ -20,6 +20,7 @@ export default function UploadForm({toggle, userID}) {
         setPrice(Number(e.target.value));
         console.log(description);
     }
+
     async function upload(e) {
         e.preventDefault();
         const res = await fetch("http://localhost:3000/product/upload", {
@@ -37,6 +38,14 @@ export default function UploadForm({toggle, userID}) {
                 UserID: userID
             })
           })
+        console.log(res);
+        if (res.status === 200) {
+            toggle();
+            displayMessage(false);
+        } else {
+            toggle();
+            displayMessage(false);
+        }
     }
     return (
         <div className="upload-form-container">

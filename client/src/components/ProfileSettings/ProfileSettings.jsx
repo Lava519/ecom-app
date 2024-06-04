@@ -7,6 +7,8 @@ export default function ProfileSettings() {
   const [profile, setProfile] = useState({});
   const [userID, setUserID] = useState(null);
   const [showUpload, setShowUpload] = useState(false);
+  const [displayMessage, setDisplayMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
   useEffect(() => {
     async function getUserID() {
       const res = await fetch("http://localhost:3000/user/getUserID", {
@@ -43,6 +45,21 @@ export default function ProfileSettings() {
     localStorage.removeItem('authToken');
     nav('/');
   }
+  const handleDisplayMessage = (error) => {
+    setDisplayMessage(false);
+    setErrorMessage(false);
+    console.log(error);
+    if (error) {
+      setErrorMessage(true);
+    }
+    else {
+      setDisplayMessage(true);
+    } 
+    setTimeout(()=> {
+      setDisplayMessage(false);
+      setErrorMessage(false);
+    }, 1500);
+  }
   const toggleUploadForm = () => {
     if (showUpload)
       setShowUpload(false);
@@ -51,6 +68,10 @@ export default function ProfileSettings() {
   }
   return (
     <div className="user-profile-container">
+      <div className="messages-container">
+        {displayMessage && <p className="display-message">Successfully uploaded product</p>}
+        {errorMessage && <p className="error-message">Something went wrong</p>}
+      </div>
       <div className="user-profile">
         <div className="avatar-container">
           <img className="avatar" style={{maxWidth: 150}} src={profile.Avatar} /> 
@@ -61,7 +82,7 @@ export default function ProfileSettings() {
         <p className="name">{profile.UserName}</p>
         {profile.Role === "Seller" && <button className="upload-button" onClick={()=>{toggleUploadForm()}}>Upload</button>}
         {showUpload && 
-          <UploadForm toggle={toggleUploadForm} userID={userID}></UploadForm>
+          <UploadForm displayMessage={handleDisplayMessage} toggle={toggleUploadForm} userID={userID}></UploadForm>
         }
         <button className="logout" onClick={handleLogout}>Logout</button>
       </div>

@@ -41,3 +41,20 @@
 .user-profile-container .upload-button {
     margin-bottom: 2em;
 }
+
+.user-profile-container > .messages-container {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+}
+
+.user-profile-container .error-message {
+    background-color: #A22;
+    text-align: center;
+}
+
+.user-profile-container .display-message {
+    background-color: #2A2;
+    text-align: center;
+}
