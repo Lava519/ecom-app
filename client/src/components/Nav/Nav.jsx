@@ -2,7 +2,7 @@ import "./Nav.css";
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CartItems from '../CartItems/CartItems';
-export default function Nav() {
+export default function Nav({cartProduct}) {
   const [name, setName] = useState(null);
   const [avatar, setAvatar] = useState(null);
   const [hideCart, setHideCart] = useState(true)
@@ -46,10 +46,10 @@ export default function Nav() {
     <div className="nav-container">
       <ul className="nav">
         <li className="nav-home" onClick={navHome}>Home</li>
-        {name && <li onClick={toggleCart}>Cart</li>}
+        {name && <li className="cart" onClick={toggleCart}><img src="/Cart.svg"></img></li>}
         {name ? <li onClick={navProfile}>{name}<span className="nav-avatar-container"><img className="nav-avatar" src={`${avatar}`} /></span></li> : <li className="nav-login" onClick={navLogin}>Login</li> }
         <div className={`dropdown-cart ${hideCart===true ? "hide" : ""}`}>
-          <CartItems></CartItems>
+          <CartItems cartProduct={cartProduct}></CartItems>
         </div>
       </ul>
       <div onClick={toggleCart} className={`overlay ${hideCart===true ? "hide" : ""}`}></div>

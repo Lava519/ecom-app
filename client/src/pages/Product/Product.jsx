@@ -7,6 +7,8 @@ import "./Product.css";
 export default function Product() {
   const [product, setProduct] = useState(null);
   const [userID, setUserID] = useState(null);
+  const [cartProduct, setCartProduct] = useState(null);
+  const [quantity, setQuantity] = useState(0);
   const location = useLocation();
   const currency = '$';
   useEffect(() => {
@@ -46,9 +48,12 @@ export default function Product() {
       getUserID();
     }
   }, [])
+  const updateCartProduct = (q) => {
+    setCartProduct({ ProductID: product.ProductID, Name: product.Name, Quantity: quantity+q, Image: product.Image, Price: product.Price});
+  }
   return(
     <>
-      <Nav></Nav>
+      <Nav cartProduct={cartProduct}></Nav>
       { product && <div className="product-page-container">
         <div className="product-page">
           <div className="product-image-container">
@@ -58,7 +63,7 @@ export default function Product() {
             <h1 className="product-name">{product.Name}</h1>
             <p className="product-description">{product.Description}</p>
             <h2 className='product-price'>{product.Price}{currency}</h2>
-            <Cart item={product} id={userID}></Cart>
+            <Cart updateCartProduct={updateCartProduct} item={product} id={userID}></Cart>
           </div>
         </div>
 

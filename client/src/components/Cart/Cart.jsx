@@ -1,7 +1,7 @@
 import { useState , useRef } from 'react';
 import "./Cart.css"
 
-export default function Cart({id, item}) {
+export default function Cart({updateCartProduct, id, item}) {
   const [quantity, setQuantity] = useState(0);
   const number = useRef(null);
   async function addToCart() {
@@ -22,8 +22,11 @@ export default function Cart({id, item}) {
   const handleAddToCart = () => {
     number.current.value = 0;
     setQuantity(0);
-    if (localStorage.getItem('authToken') && quantity > 0)
+    if (localStorage.getItem('authToken') && quantity > 0) {
       addToCart();
+      updateCartProduct(quantity);
+    }
+      
   }
   const handleCartInput = (e) => {
     if (e.target.value == null)

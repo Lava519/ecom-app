@@ -64,7 +64,7 @@
   top: 60px;
   width: 400px;
   right: 25px;
-  height: 100px;
+  height: 200px;
   background-color: #151513;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -83,4 +83,9 @@
   left: 0;
   background-color: transparent;
   z-index: -1;
+}
+
+.nav-container .cart > img {
+  max-width: 30px;
+  position: relative;
 }

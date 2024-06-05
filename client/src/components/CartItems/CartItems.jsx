@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import "./CartItems.css";
 
-export default function CartItems() {
+export default function CartItems({cartProduct}) {
   const [products, setProducts] = useState(null);
   async function deleteItem(id) {
     const res = await fetch("http://localhost:3000/cart/deleteCart", {
@@ -36,7 +36,20 @@ export default function CartItems() {
       setProducts(data);
     } 
     getCartItems();
-  }, [/* NEED DEPENDENCY IN ORDER TO UPDATE */])
+  }, [])
+  useEffect ( ()=> {
+    if (cartProduct) {
+      if (products.filter((product) => product.ProductID === cartProduct.ProductID).length == 0)
+        setProducts([...products, cartProduct]);
+      else
+        setProducts(products.map((product) => {
+          if(product.ProductID === cartProduct.ProductID)
+            product.Quantity+=cartProduct.Quantity
+          return product
+        }))
+    }
+
+  },[cartProduct])
   return (
     <div className="cart-items-container">
       {products &&
