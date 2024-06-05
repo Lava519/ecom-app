@@ -20,10 +20,14 @@ export default function Nav({cartProduct}) {
       const data = await res.json().then( (x) => x.data[0]);
       setName(data.FullName);
       setAvatar(data.Avatar);
+      localStorage.setItem('name', data.FullName);
+      localStorage.setItem('avatar', data.Avatar);
     }
   }
   useEffect(() => {
     if(localStorage.getItem('authToken')) {
+      setName(localStorage.getItem('name'));
+      setAvatar(localStorage.getItem('avatar'));
       authenticate();
     }
   }, [])

@@ -42,6 +42,8 @@ export default function ProfileSettings() {
   const nav = useNavigate();
   const handleLogout = () => {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('name');
+    localStorage.removeItem('avatar');
     nav('/');
   }
   const handleDisplayMessage = (error) => {
