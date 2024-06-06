@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CartItems from '../CartItems/CartItems';
 export default function Nav({cartProduct}) {
-  const [name, setName] = useState(null);
-  const [avatar, setAvatar] = useState(null);
+  const [name, setName] = useState(localStorage.getItem('name'));
+  const [avatar, setAvatar] = useState(localStorage.getItem('avatar'));
   const [hideCart, setHideCart] = useState(true)
   const [cartFull, setCartFull] = useState(false);
   const nav = useNavigate();
@@ -27,8 +27,6 @@ export default function Nav({cartProduct}) {
   }
   useEffect(() => {
     if(localStorage.getItem('authToken')) {
-      setName(localStorage.getItem('name'));
-      setAvatar(localStorage.getItem('avatar'));
       authenticate();
     }
   }, [])
