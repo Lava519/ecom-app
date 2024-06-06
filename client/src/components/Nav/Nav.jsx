@@ -6,6 +6,7 @@ export default function Nav({cartProduct}) {
   const [name, setName] = useState(null);
   const [avatar, setAvatar] = useState(null);
   const [hideCart, setHideCart] = useState(true)
+  const [cartFull, setCartFull] = useState(false);
   const nav = useNavigate();
   async function authenticate() {
     const res = await fetch("http://localhost:3000/user/authenticate", {
@@ -31,6 +32,9 @@ export default function Nav({cartProduct}) {
       authenticate();
     }
   }, [])
+  const cartContent = (value) => {
+    setCartFull(value)
+  }
   const navLogin = () => {
     nav("/login");
   }
@@ -50,10 +54,10 @@ export default function Nav({cartProduct}) {
     <div className="nav-container">
       <ul className="nav">
         <li className="nav-home" onClick={navHome}>Home</li>
-        {name && <li className="cart" onClick={toggleCart}><img src="/Cart.svg"></img></li>}
+        {name && <li className="cart" onClick={toggleCart}><div className={`cart-image-container ${cartFull ? "cart-full" : ""}`}><img src="/Cart.svg"></img></div></li>}
         {name ? <li onClick={navProfile}>{name}<span className="nav-avatar-container"><img className="nav-avatar" src={`${avatar}`} /></span></li> : <li className="nav-login" onClick={navLogin}>Login</li> }
         <div className={`dropdown-cart ${hideCart===true ? "hide" : ""}`}>
-          <CartItems cartProduct={cartProduct}></CartItems>
+          <CartItems cartContent={cartContent} cartProduct={cartProduct}></CartItems>
         </div>
       </ul>
       <div onClick={toggleCart} className={`overlay ${hideCart===true ? "hide" : ""}`}></div>
