@@ -36,8 +36,9 @@ export default function CartItems({cartContent, cartProduct}) {
       const data = await res.json();
       setProducts(data);
       checkEmptyCart(data);
-    } 
-    getCartItems();
+    }
+    if (localStorage.getItem('authToken'))
+      getCartItems();
   }, [])
   useEffect ( ()=> {
     if (cartProduct) {
