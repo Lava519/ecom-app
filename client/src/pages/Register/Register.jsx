@@ -12,6 +12,8 @@ export default function Register() {
 
   const [validPassword, setValidPassword] = useState(true);
   const [validUsername, setValidUsername] = useState(true);
+  const [validFName, setvalidFName] = useState(true);
+  const [validLName, setvalidLName] = useState(true);
   const [samePassword, setSamePassword] = useState(true);
   const [uniqueUsername, setUniqueUsername] = useState(true);
   const nav = useNavigate();
@@ -30,7 +32,7 @@ export default function Register() {
       })
     })
     if (res.status === 200) {
-      nav("/login");
+      nav("/login", {state:{registered: true}});
     }
     else if (res.status === 202) {
       setUniqueUsername(false);
@@ -39,13 +41,21 @@ export default function Register() {
 
   const handleFirstNameInput = (e) => {
     setFName(e.target.value);
+    if(e.target.value.length < 2)
+      setvalidFName(false);
+    else
+      setvalidFName(true);
   }
   const handleLastNameInput = (e) => {
     setLName(e.target.value);
+    if(e.target.value.length < 2)
+      setvalidLName(false);
+    else
+      setvalidLName(true);
   }
   const handleUsernameInput = (e) => {
     setUsername(e.target.value);
-    if (username.length < 3)
+    if (e.target.value < 5)
       setValidUsername(false);
     else {
       setValidUsername(true);
@@ -66,7 +76,7 @@ export default function Register() {
     e.preventDefault();
     if (password != dpassword)
       setSamePassword(false);
-    else if (validUsername && validPassword) {
+    else if (validUsername && validPassword && validFName && setvalidLName) {
       setSamePassword(true);
       submitToDB();
     }
@@ -81,21 +91,24 @@ export default function Register() {
           <section className="register-name-container">
             <p className="first-name">First Name:</p>
             <input className="first-name-input" onChange={handleFirstNameInput} type="text" />
+            {!validFName && <p className="warning warning-name">Minimum 2 characters required</p>}
             <p className="last-name">Last Name:</p>
             <input className="last-name-input" onChange={handleLastNameInput} type="text" />
+            {!validLName && <p className="warning warning-name">Minimum 2 characters required</p>}
           </section>
           <section className="register-username-container">
             <p className="userame">Username:</p>
             <input className="username-input" onChange={handleUsernameInput} type="text" />
-            {!validUsername && <p className="warning">Not valid username</p>}
+            {!validUsername && <p className="warning">Minimum 5 characters required</p>}
             {!uniqueUsername && <p className="warning">Username already exists</p>}
           </section>
           <section className="register-password-container">
             <p className="password">Password:</p>
             <input className="password-input" onChange={handlePasswordInput} type="password" />
-            {!validPassword && <p className="warning">Not valid password</p>}
+            {!validPassword && <p className="warning">Minimum 5 characters required</p>}
             <p className="password-confirm">Confirm Password:</p>
             <input className="password-confirm-input" onChange={handleDPaswordInput} type="password" />
+            {!samePassword && <p className="warning">Passwords do not match</p>}
           </section>
           <button className="register-button" type="submit">Register</button>
         </form>

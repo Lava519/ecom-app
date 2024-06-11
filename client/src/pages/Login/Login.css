@@ -48,3 +48,12 @@
     width: 250px;
     text-transform: capitalize;
 }
+
+.login-form-container .login-created-account {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: #2A2;
+    text-align: center;
+}

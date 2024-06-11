@@ -1,13 +1,22 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Nav from '../../components/Nav/Nav';
 import "./Login.css";
 
 export default function Login() {
+  const location = useLocation();
+  const [registeredMessage, setRegisteredMessage] = useState(location.state?.registered);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [validLogin, setValidLogin] = useState(true);
   const nav = useNavigate();
+
+  useEffect(()=>{
+    if(registeredMessage)
+      setTimeout(() => {
+        setRegisteredMessage(false);
+      }, 3000);
+  },[])
   async function submitToDB() {
     const res = await fetch("http://localhost:3000/user/login", {
     method: "post",
@@ -30,7 +39,7 @@ export default function Login() {
       setValidLogin(false);
     }
   }
-  
+
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
     setValidLogin(true);
@@ -51,8 +60,10 @@ export default function Login() {
     <div>
       <Nav></Nav>
       <div className="login-form-container">
+        
         <form className="login-form" onSubmit={handleSubmit}>
           <h2 className="login-form-title">LOGIN</h2>
+          {registeredMessage && <p className="login-created-account">Successfully created account</p>}
           {!validLogin && <p className="warning">We couldn't find this account</p>}
           <p className="username">Username:</p>
           <input className="username-input" onChange={handleUsernameChange} type="text"/>

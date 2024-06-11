@@ -13,7 +13,6 @@
     max-height: 800px;
     padding: 2em 2em;
     margin: auto auto;
-    gap: 0.5em;
 }
 
 .register-form-container .register-form-title {
@@ -24,7 +23,7 @@
 .register-form-container .register-name-container {
     display: grid;
     grid-template-columns: 0.5fr 1fr;
-    grid-template-rows: 0.5fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     align-items: center;
     gap: 1em;
     margin-bottom: 1em;
@@ -67,4 +66,8 @@
     text-wrap: wrap;
     font-size: 0.9rem;
     margin-top: -0.5em;
+}
+
+.warning-name {
+    grid-column: span 2;
 }

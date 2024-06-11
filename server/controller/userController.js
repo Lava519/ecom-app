@@ -8,17 +8,22 @@ const register = async (req, res) => {
   const fname = req.body.fname;
   const username = req.body.username;
   const password = req.body.password;
-  let user = await getUser([username]);
-  if ( user.length > 0 )
-    res.sendStatus(202);
-  else {
-    bcrypt.genSalt(saltRounds, (err, salt) => {
-      bcrypt.hash(password, salt, async (err, hash) => {
-        user = await setUser([fname, username, hash]);
-      })
-    })
+  if ( fname && username && password ) {
+    if( fname.length > 4 && username.length > 4 && password.length > 4 ) {
+      let user = await getUser([username]);
+      if ( user.length > 0 )
+        return res.sendStatus(202);
+      else {
+        bcrypt.genSalt(saltRounds, (err, salt) => {
+          bcrypt.hash(password, salt, async (err, hash) => {
+            user = await setUser([fname, username, hash]);
+          })
+        })
+      }
+      return res.status(200).send();
+    }
   }
-  res.status(200).send();
+  return res.sendStatus(400);
 }
 
 
