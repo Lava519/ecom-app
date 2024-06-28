@@ -1,7 +1,8 @@
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 const jwt = require('jsonwebtoken');
-const { getUser, setUser, authenticateUser } = require('../queries/userQueries.js');
+const fs = require("fs");
+const { getUser, setUser, setImage, authenticateUser } = require('../queries/userQueries.js');
 
 const imagePrefix = 'http://localhost:3000/';
 const register = async (req, res) => {
@@ -51,6 +52,18 @@ const login = async (req, res)=> {
   }     
 }
 
+const image = async( req, res ) => {
+  const image = req.body.Image;
+  const id = req.body.UserID;
+  const fileName = `avatar-${id}`;
+  const path = __dirname + '/../images/' + fileName+".jpg";
+  const bufferData = Buffer.from(image.split(',')[1], 'base64');
+  fs.writeFile(path, bufferData, async () => {
+    await setImage([fileName, id]);;
+  });
+  res.sendStatus(200);
+}
+
 const authenticate = async (req, res) => {
   const id = req.user.id;
   let data = await authenticateUser([id]);
@@ -62,5 +75,6 @@ module.exports = {
   login,
   register,
   authenticate,
-  getUserID
+  image,
+  getUserID,
 }

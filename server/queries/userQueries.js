@@ -12,6 +12,12 @@ const setUser = async (input) => {
   return data;
 }
 
+const setImage = async (input) => {
+  const QUERY = 'UPDATE Users SET Avatar=? WHERE UserID=?;'
+  let data = await query(QUERY, input);
+  return data;
+}
+
 const authenticateUser = async (input) => {
   const QUERY = 'SELECT FullName, UserName, Avatar, Role FROM Users WHERE UserID = ?;';
   let data = await query(QUERY, input);
@@ -21,5 +27,6 @@ const authenticateUser = async (input) => {
 module.exports = {
   getUser,
   setUser,
+  setImage,
   authenticateUser
 }
