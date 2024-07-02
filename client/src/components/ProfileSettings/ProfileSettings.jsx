@@ -79,6 +79,9 @@ export default function ProfileSettings() {
       </div>
       <div className="user-profile">
         <div onClick={toggleUploadAvatar} className="avatar-container">
+          <div className="avatar-overlay-container">
+            <img src="/Edit.svg" className="avatar-overlay" />
+          </div>
           <img
             className="avatar"
             style={{ maxWidth: 150 }}

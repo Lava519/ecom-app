@@ -16,7 +16,12 @@
 }
 
 .user-profile-container .avatar-container {
+    margin: 0 auto;
     margin-bottom: 2em;
+    position: relative;
+    cursor: pointer;
+    width: 150px;
+    height: 150px;
 } 
 
 .user-profile-container .avatar {
@@ -25,6 +30,27 @@
     width: 150px;
     height: 150px;
     margin: 0 auto;
+}
+
+.user-profile-container .avatar-overlay-container:hover {
+    opacity: 0.5;
+}
+
+.user-profile-container .avatar-overlay-container {
+    transition: opacity 0.5s;
+    position: absolute;
+    background-color: #151513;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    opacity: 0;
+}
+
+.user-profile-container .avatar-overlay {
+    width: 100px;
 }
 
 .user-profile-container .name-title {
