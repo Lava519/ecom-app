@@ -40,3 +40,7 @@
     top: 20px;
     cursor: pointer;
 }
+
+.upload-avatar-container .close > img {
+    width: 20px;
+}

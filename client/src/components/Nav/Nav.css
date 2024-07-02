@@ -33,6 +33,10 @@
   cursor: pointer;
 }
 
+.nav-profile-button {
+  margin-right: 1em;
+}
+
 .nav-container .nav > li:last-child {
   margin-right: 1em;
 }
@@ -41,15 +45,14 @@
 }
 
 .nav-container .nav-avatar-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  max-width: 35px;
-  padding: 0 10px;
+  margin-left: 1em;
 }
 .nav-avatar-container .nav-avatar{
-  width: 100%;
   border-radius: 50%;
+  display: block;
+  width: 35px;
+  height: 35px;
+  margin: 0 auto;
 }
 .nav-container .nav-home {
   margin-right: auto;

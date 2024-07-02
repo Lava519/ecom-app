@@ -47,7 +47,7 @@ export default function UploadAvatar({ toggle, defaultAvatar, userID }) {
     <div className="upload-avatar-container">
     <div onClick={toggle} className="overlay"></div>
     <a className="close" onClick={toggle}>
-          X
+          <img src="Close.svg" />
     </a>
     <h2>Upload Avatar</h2>
     <div className="avatar-container">

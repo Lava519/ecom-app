@@ -49,7 +49,7 @@ export default function UploadForm({ displayMessage, toggle, userID }) {
       <div onClick={toggle} className="overlay"></div>
       <form className="upload-form" onSubmit={upload}>
         <a className="close" onClick={toggle}>
-          X
+          <img src="Close.svg" />
         </a>
         <h2 className="title">Upload Product</h2>
         <label className="upload-form-name-title">Name</label>

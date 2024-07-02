@@ -53,7 +53,7 @@ export default function Nav({cartProduct}) {
       <ul className="nav">
         <li className="nav-home" onClick={navHome}>Home</li>
         {name && <li className="cart" onClick={toggleCart}><div className={`cart-image-container ${cartFull ? "cart-full" : ""}`}><img src="/Cart.svg"></img></div></li>}
-        {name ? <li onClick={navProfile}>{name}<span className="nav-avatar-container"><img className="nav-avatar" src={`${avatar}`} /></span></li> : <li className="nav-login" onClick={navLogin}>Login</li> }
+        {name ? <li className="nav-profile-button" onClick={navProfile}>{name}<span className="nav-avatar-container"><img className="nav-avatar" src={`${avatar}`} /></span></li> : <li className="nav-login" onClick={navLogin}>Login</li> }
         <div className={`dropdown-cart ${hideCart===true ? "hide" : ""}`}>
           <CartItems cartContent={cartContent} cartProduct={cartProduct}></CartItems>
         </div>
