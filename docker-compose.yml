@@ -27,7 +27,7 @@ services:
           path: ./client
           target: /app
   db:
-    image: mariadb
+    image: mariadb:11.4
     network_mode: "host"
     environment:
       MYSQL_ROOT_PASSWORD: password
